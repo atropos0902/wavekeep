@@ -1,0 +1,17 @@
+{
+  "name": "@wavekeep/engines",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./adapter": "./src/adapter.ts",
+    "./rule": "./src/rule.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "0.93.0",
+    "@google/genai": "1.52.0",
+    "@wavekeep/core": "workspace:*",
+    "openai": "6.36.0",
+    "zod": "4.4.3"
+  }
+}
