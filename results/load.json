@@ -1,0 +1,20 @@
+{
+  "answers": 480000,
+  "first request for a pin, one at a time": {
+    "requests": 36,
+    "p50": 156,
+    "p95": 216
+  },
+  "50 users, a request every second each, cold start": {
+    "requests": 2062,
+    "p50": 4,
+    "p95": 226,
+    "p99": 2485
+  },
+  "50 users, no pause between requests, cold start": {
+    "requests": 12991,
+    "p50": 89,
+    "p95": 142,
+    "p99": 619
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "overview": {
+    "events": 12,
+    "slowerThan16ms": 12,
+    "p75": 32,
+    "worst": 56
+  },
+  "compare": {
+    "events": 3,
+    "slowerThan16ms": 3,
+    "p75": 24,
+    "worst": 24
+  },
+  "sources": {
+    "events": 5,
+    "slowerThan16ms": 5,
+    "p75": 40,
+    "worst": 40
+  },
+  "questions": {
+    "events": 16,
+    "slowerThan16ms": 3,
+    "p75": 16,
+    "worst": 16
+  },
+  "names": {
+    "events": 11,
+    "slowerThan16ms": 3,
+    "p75": 16,
+    "worst": 24
+  },
+  "waves": {
+    "events": 4,
+    "slowerThan16ms": 4,
+    "p75": 32,
+    "worst": 32
+  },
+  "reports": {
+    "events": 14,
+    "slowerThan16ms": 3,
+    "p75": 16,
+    "worst": 16
+  }
+}

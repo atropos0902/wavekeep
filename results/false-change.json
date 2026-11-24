@@ -1,0 +1,27 @@
+{
+  "pairs": 2000,
+  "nothing changed, all completed": {
+    "pooled": 0.016,
+    "product": 0.032
+  },
+  "nothing changed, one engine lost 75%": {
+    "pooled": 0.3995,
+    "product": 0.032
+  },
+  "questions drift, sd 1.0": {
+    "pooled": 0.057,
+    "product": 0.046
+  },
+  "questions drift, sd 1.5": {
+    "pooled": 0.1085,
+    "product": 0.048
+  },
+  "real lift +0.6": {
+    "pooled": 0.458,
+    "product": 0.5615
+  },
+  "real lift +0.6, one engine lost 75%": {
+    "pooled": 0.963,
+    "product": 0.32
+  }
+}
