@@ -1,0 +1,37 @@
+{
+  "name": "wavekeep",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=24.15"
+  },
+  "packageManager": "pnpm@10.33.3",
+  "scripts": {
+    "demo": "bash scripts/demo.sh",
+    "check": "biome check . && tsc -p tsconfig.json && tsc -p e2e/tsconfig.json && tsc -p apps/web/tsconfig.json",
+    "test": "vitest run",
+    "mutants": "stryker run",
+    "mutants:closing": "stryker run stryker.closing.json",
+    "e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.11.3",
+    "@biomejs/biome": "2.4.14",
+    "@playwright/test": "1.59.1",
+    "@stryker-mutator/core": "9.6.1",
+    "@stryker-mutator/vitest-runner": "9.6.1",
+    "@testcontainers/postgresql": "11.14.0",
+    "@types/node": "^24.12.2",
+    "fast-check": "4.7.0",
+    "typescript": "6.0.3",
+    "vitest": "4.1.5",
+    "@wavekeep/core": "workspace:*",
+    "@wavekeep/service": "workspace:*",
+    "@wavekeep/engines": "workspace:*",
+    "@wavekeep/api": "workspace:*",
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "pg": "8.20.0",
+    "@types/pg": "^8.15.0"
+  }
+}

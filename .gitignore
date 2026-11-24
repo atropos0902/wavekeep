@@ -1,0 +1,8 @@
+node_modules
+.next
+.stryker-tmp
+reports
+test-results
+.env
+next-env.d.ts
+*.tsbuildinfo
