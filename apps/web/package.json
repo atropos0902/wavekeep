@@ -1,0 +1,31 @@
+{
+  "name": "@wavekeep/web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev -p 4310",
+    "build": "next build",
+    "start": "next start -p 4310"
+  },
+  "dependencies": {
+    "@tanstack/react-table": "8.21.3",
+    "@tanstack/react-virtual": "3.13.24",
+    "@wavekeep/core": "workspace:*",
+    "@wavekeep/service": "workspace:*",
+    "d3-scale": "4.0.2",
+    "next": "16.2.4",
+    "nuqs": "2.8.9",
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "pg": "8.20.0",
+    "pg-boss": "12.18.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.2.4",
+    "@types/d3-scale": "^4.0.9",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "tailwindcss": "4.2.4",
+    "@types/pg": "^8.15.0"
+  }
+}
