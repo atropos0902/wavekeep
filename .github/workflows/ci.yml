@@ -1,0 +1,76 @@
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:18.3
+        env: { POSTGRES_PASSWORD: x }
+        ports: ["5460:5432"]
+        options: --health-cmd "pg_isready -U postgres" --health-interval 2s --health-retries 20
+    env:
+      WAVEKEEP_TEST_PG: postgres://postgres:x@127.0.0.1:5460/postgres
+      OWNER_URL: postgres://postgres:x@127.0.0.1:5460/postgres
+      DATABASE_URL: postgres://wavekeep_app:app@127.0.0.1:5460/postgres
+    steps:
+      - uses: actions/checkout@v5
+        with: { fetch-depth: 0 }
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with: { node-version: "24.15.0", cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @wavekeep/web exec next typegen
+      - run: pnpm check
+      - run: pnpm test
+      - run: node bench/false-change.ts
+      - run: node scripts/setup-db.ts
+      - run: pnpm --filter @wavekeep/web build
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: bash scripts/e2e.sh
+  old-build-new-schema:
+    # The code on main has to keep working against the migrations in this pull request.
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:18.3
+        env: { POSTGRES_PASSWORD: x }
+        ports: ["5460:5432"]
+        options: --health-cmd "pg_isready -U postgres" --health-interval 2s --health-retries 20
+    env:
+      WAVEKEEP_TEST_PG: postgres://postgres:x@127.0.0.1:5460/postgres
+    steps:
+      - uses: actions/checkout@v5
+        with: { ref: "${{ github.base_ref }}" }
+      - uses: actions/checkout@v5
+        with: { path: next }
+      - run: cp next/packages/service/migrations/*.sql packages/service/migrations/ && rm -rf next
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with: { node-version: "24.15.0", cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+  mutants:
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:18.3
+        env: { POSTGRES_PASSWORD: x }
+        ports: ["5460:5432"]
+        options: --health-cmd "pg_isready -U postgres" --health-interval 2s --health-retries 20
+    env:
+      WAVEKEEP_TEST_PG: postgres://postgres:x@127.0.0.1:5460/postgres
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with: { node-version: "24.15.0", cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm mutants
+      - run: pnpm mutants:closing
