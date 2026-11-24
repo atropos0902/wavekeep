@@ -1,0 +1,10 @@
+{
+  "name": "@wavekeep/worker",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@wavekeep/engines": "workspace:*",
+    "@wavekeep/service": "workspace:*",
+    "@wavekeep/core": "workspace:*"
+  }
+}
